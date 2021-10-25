@@ -1,7 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Lista de Contatos</h1>
-
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
 <%= link_to 'Novo Contato', new_pessoa_path , type:"button", class:"btn btn-primary" %>
 </div>
@@ -25,9 +24,9 @@
         <td><%= pessoa.idade %></td>
         <td><%= pessoa.cpf %></td>
         <td><%= pessoa.genero.nome %></td>
-        <td><%= link_to 'Detalhe', pessoa, type:"button", class:"btn btn-outline-info" %></td>
-        <td><%= link_to 'Editar', edit_pessoa_path(pessoa), type:"button", class:"btn btn-outline-primary" %></td>
-        <td><%= link_to 'Excluir', pessoa, method: :delete, data: { confirm: 'Você tem certeza ?' }, type:"button", class:"btn btn-outline-danger" %></td>
+        <td><%= link_to '', pessoa, class:"bi bi-search" %></td>
+        <td><%= link_to '', edit_pessoa_path(pessoa), class:"bi bi-pencil-square" %></td>
+        <td><%= link_to '', pessoa, method: :delete, data: { confirm: 'Você tem certeza ?' }, class:"bi bi-trash" %></td>
       </tr>
     <% end %>
   </tbody>

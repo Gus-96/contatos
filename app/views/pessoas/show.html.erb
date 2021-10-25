@@ -1,3 +1,10 @@
+<div class="container">
+    <div class="py-5 text-center">
+      <h2>Detalhe do Contato</h2>
+      <p class="lead">As informações abaixo estão salvas no banco de dados PostgreSQL.</p>
+
+
+<div class="py-5 text-center">
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -15,10 +22,13 @@
   <%= @pessoa.cpf %>
 </p>
 
-<p>
   <strong>Gênero:</strong>
   <%= @pessoa.genero.nome %>
-</p>
+</div>
+    </div>
 
-<%= link_to 'Edit', edit_pessoa_path(@pessoa) %> |
-<%= link_to 'Back', pessoas_path %>
+<hr class="mb-4, actions">
+<%= link_to 'Editar', edit_pessoa_path(@pessoa) , class:"btn btn-primary btn-lg btn-block" %>
+<%= link_to 'Voltar', pessoas_path, class:"btn btn-secondary btn-lg btn-block" %>
+</div>
+
