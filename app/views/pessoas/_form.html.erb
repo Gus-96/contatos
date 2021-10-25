@@ -1,0 +1,59 @@
+<%= form_with(model: pessoa) do |form| %>
+  <% if pessoa.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(pessoa.errors.count, "error") %> prohibited this pessoa from being saved:</h2>
+
+      <ul>
+        <% pessoa.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+<div class="container">
+    <div class="py-5 text-center">
+      <h2>Formulário de Cadastro de Contato</h2>
+      <p class="lead">Preencha devidamente os campos ambaixo.</p>
+    </div>
+
+    <div>
+      <form class="needs-validation " novalidate>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="firstName">Nome</label>
+            <%= form.text_field :nome, class:"form-control", placeholder:"Fulano"%>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="lastName">Idade</label>
+            <%= form.text_field :idade , class:"form-control", placeholder:"25"%>
+          </div>
+        </div>
+        <br>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="cargo">CPF</label>
+            <%= form.text_field :cpf, onkeypress:"$(this).mask('000.000.000-AA')", class:"form-control", minlength:14, maxlength:14 %>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="lastName">Genero</label>
+            <%= form.select("genero_id", Genero.all.collect{|m| [ m.nome, m.id ] }, {include_blank: 'Selecione...'}, class:"form-control") %>
+          </div>
+        </div>
+        <br>
+
+    <hr class="mb-4, actions">
+    <%= form.submit "Salvar Contato", class:"btn btn-primary btn-lg btn-block"%>
+    <%= link_to "Voltar", pessoas_path, class:"btn btn-secondary btn-lg btn-block" %>
+    </form>
+  </div>
+  </div>
+
+  </div>
+
+  
+<% end %>
