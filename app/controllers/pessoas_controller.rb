@@ -13,19 +13,22 @@ class PessoasController < ApplicationController
   # GET /pessoas/new
   def new
     @pessoa = Pessoa.new
+    2.times { @pessoa.telefones.build }
+
   end
 
   # GET /pessoas/1/edit
   def edit
+  @pessoa.telefones.build
   end
 
   # POST /pessoas or /pessoas.json
   def create
     @pessoa = Pessoa.new(pessoa_params)
-
+    
     respond_to do |format|
       if @pessoa.save
-        format.html { redirect_to @pessoa, notice: "Pessoa was successfully created." }
+        format.html { redirect_to @pessoa, notice: "Contato foi criado com sucesso." }
         format.json { render :show, status: :created, location: @pessoa }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +41,7 @@ class PessoasController < ApplicationController
   def update
     respond_to do |format|
       if @pessoa.update(pessoa_params)
-        format.html { redirect_to @pessoa, notice: "Pessoa was successfully updated." }
+        format.html { redirect_to @pessoa, notice: "Contato foi atualizado com sucesso." }
         format.json { render :show, status: :ok, location: @pessoa }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -51,7 +54,7 @@ class PessoasController < ApplicationController
   def destroy
     @pessoa.destroy
     respond_to do |format|
-      format.html { redirect_to pessoas_url, notice: "Pessoa was successfully destroyed." }
+      format.html { redirect_to pessoas_url, notice: "Contato foi deletado com sucesso." }
       format.json { head :no_content }
     end
   end
@@ -64,6 +67,6 @@ class PessoasController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def pessoa_params
-      params.require(:pessoa).permit(:nome, :idade, :cpf, :genero_id)
+      params.require(:pessoa).permit(:nome, :idade, :cpf, :genero_id , telefones_attributes: [:id, :tipo, :numero, :pessoa_id, :_destroy])
     end
 end

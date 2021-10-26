@@ -11,11 +11,9 @@
     </div>
   <% end %>
 
-
-
 <div class="container">
     <div class="py-5 text-center">
-      <h2>Formulário de Cadastro de Contato</h2>
+      <h2>Formulário de Cadastro</h2>
       <p class="lead">Preencha todos os campos abaixo.</p>
     </div>
 
@@ -25,11 +23,11 @@
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="firstName">Nome</label>
-            <%= form.text_field :nome, class:"form-control", placeholder:"Fulano"%>
+            <%= form.text_field :nome, class:"form-control", placeholder:"Fulano", :required => true%> 
           </div>
           <div class="col-md-6 mb-3">
             <label for="lastName">Idade</label>
-            <%= form.text_field :idade , class:"form-control", placeholder:"25"%>
+            <%= form.text_field :idade , class:"form-control", placeholder:"25", :required => true%> 
           </div>
         </div>
         <br>
@@ -37,23 +35,35 @@
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="cargo">CPF</label>
-            <%= form.text_field :cpf, onkeypress:"$(this).mask('000.000.000-AA')", class:"form-control", minlength:14, maxlength:14 %>
+            <%= form.text_field :cpf, onkeypress:"$(this).mask('000.000.000-AA')", class:"form-control", minlength:14, maxlength:14, placeholder:"123.456.789-10", :required => true%>
           </div>
           <div class="col-md-6 mb-3">
             <label for="lastName">Genero</label>
-            <%= form.select("genero_id", Genero.all.collect{|m| [ m.nome, m.id ] }, {include_blank: 'Selecione...'}, class:"form-control") %>
+            <%= form.select("genero_id", Genero.all.collect{|m| [ m.nome, m.id ] }, {}, class:"form-control") %>
           </div>
         </div>
         <br>
+          <%= form_with model: @pessoa do |form| %>
+            <%= form.fields_for :telefones do |telefones_form| %>
+              <%= telefones_form.label :tipo %>
+              <%= telefones_form.select :tipo, [["Celular Pessoal", "Celular Pessoal"], ["Celular Corporativo", "Celular Corporativo"], ["Residencial", "Residencial"]], {}, {class: "form-control"} %>
+              <br>
+              <%= telefones_form.label :numero %>
+              <%= telefones_form.text_field :numero , class: "form-control", onkeypress:"$(this).mask('(00) 00000-0000')", minlength:14, maxlength:15 %>
+              <br>
+              Apagar Número: <%= telefones_form.check_box :_destroy %>
+              <hr class="mb-4, actions">
+              <br>
+            <% end %>
+          <% end %>
 
-    <hr class="mb-4, actions">
     <%= form.submit "Salvar Contato", class:"btn btn-primary btn-lg btn-block"%>
     <%= link_to "Voltar", pessoas_path, class:"btn btn-secondary btn-lg btn-block" %>
+    <br>
     </form>
   </div>
   </div>
 
   </div>
-
   
 <% end %>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :telefones
   root to: "pessoas#index"
   resources :pessoas
   resources :generos

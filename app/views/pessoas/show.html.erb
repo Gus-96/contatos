@@ -22,10 +22,22 @@
   <%= @pessoa.cpf %>
 </p>
 
+<p>
   <strong>Gênero:</strong>
   <%= @pessoa.genero.nome %>
-</div>
-    </div>
+</p>
+
+<p>
+  <strong>Telefones Cadastrados:</strong> <%= @pessoa.telefones.count %>  
+</p>
+<% @pessoa.telefones.each do |variant|  %>
+<p>
+  <strong><%= variant.tipo %></strong><br>
+  <%= variant.numero %>
+</p>
+<%end%>
+
+
 
 <hr class="mb-4, actions">
 <%= link_to 'Editar', edit_pessoa_path(@pessoa) , class:"btn btn-primary btn-lg btn-block" %>

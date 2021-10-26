@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tipo: MyString
+  numero: MyString
+  pessoa: one
+
+two:
+  tipo: MyString
+  numero: MyString
+  pessoa: two
